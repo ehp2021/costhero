@@ -3,7 +3,7 @@ import {Box, Typography, Button, Card, CardMedia, CardContent} from "@material-u
 import { LocationOn } from '@material-ui/icons/LocationOn';
 
 
-function CostDetails( {price}) {
+function CostDetails({price}) {
   return (
     <Card elevation={6}>
       <CardMedia

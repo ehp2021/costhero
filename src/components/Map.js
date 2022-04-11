@@ -20,11 +20,12 @@ const options = {
     zoomControl: true,
   }
 
-function Map() {
-
+function Map(props) {
   const onLoad = marker => {
     console.log('marker: ', marker)
   }
+
+  console.log(props.allPrices, "map")
 
   return (
     <div style={{ 
@@ -35,11 +36,18 @@ function Map() {
           zoom={14}
           center={coordinates}
           options={options}
+          library
           >
-          <Marker
-            onLoad={onLoad}
-            position={coordinates}
-          />
+          {props.allPrices.map((price, i) => (
+
+            <Marker
+              onLoad={onLoad}
+              position={{lat: Number(price.lat), lng: Number(price.long)}}
+              key={i}
+              label={price.cost}
+            />
+
+          ))}
 
         </GoogleMap>
       </LoadScript>

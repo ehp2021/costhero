@@ -1,27 +1,15 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {CircularProgress, 
   Grid, Typography, InputLabel, 
   Select, MenuItem, FormControl} 
   from "@material-ui/core";
-import axios from 'axios';
+
 import CostDetails from './CostDetails';
 import './CostList.css'
 
-function CostList() {
-  const [allPrices, setAllPrices] = useState([]);
+function CostList(props) {
   const [rating, setRating] = useState('')
   const [prices, setPrices] = useState('')
-
-  useEffect(() => {
-    async function getPrices() {
-      const results = await axios('https://cpx2ojoaua.execute-api.us-east-1.amazonaws.com/call')
-      // console.log(results.data, "line 15")
-      setAllPrices(results.data)
-    }
-    getPrices()
-},[])
-
-  
 
   return (
     <div className="cost-list-container">
@@ -50,7 +38,7 @@ function CostList() {
           </FormControl>
       </div>
       <Grid container spacing={3} >
-        {allPrices?.slice(0,15).map((price, i) => (
+        {props.allPrices?.slice(0,15).map((price, i) => (
           <Grid item key={i} xs={12}>
             <CostDetails price={price} />
           </Grid>

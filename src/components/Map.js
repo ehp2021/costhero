@@ -1,10 +1,9 @@
-import React from 'react';
-// import GoogleMapReact from 'google-map-react';
+import React, {useState} from 'react';
 import {Paper, Typography, useMediaQuery} from "@material-ui/core";
 import LocationOnOutlinedIcon from "@material-ui/icons/LocationOnOutlined";
 import Rating from "@material-ui/lab"
 import mapStyles from './mapStyles';
-import { GoogleMap, useJsApiLoader, LoadScript, Marker, InfoWindow} from "@react-google-maps/api";
+import { GoogleMap, LoadScript, Marker, InfoWindow} from "@react-google-maps/api";
 
 
 const coordinates ={lat: 40.770981, lng: -73.976429};
@@ -18,18 +17,41 @@ const options = {
     styles: mapStyles,
     disableDefaultUI: true,
     zoomControl: true,
+    zoom: 1,
+    minZoom: 1
   }
 
 function Map(props) {
-  const onLoad = marker => {
-    console.log('marker: ', marker)
-  }
+  const [infoOpen, setInfoOpen] = useState(false);
+  const [zoom, setZoom] = useState(10);
+  const [selectedPlace, setSelectedPlace] = useState(null);
+  const [markerMap, setMarkerMap] = useState({});
 
-  console.log(props.allPrices, "map")
+    // create a mapping of our prices to markers
+    const markerLoadHandler = (marker, price) => {
+      return setMarkerMap(prevState => {
+        return { ...prevState, [price.id]: marker };
+      });
+    };
+
+  const markerClickHandler = (event, price) => {
+    // to remember which place was clicked
+    setSelectedPlace(price);
+    // clicking a 2nd marker works as expected
+    // if (infoOpen) {
+    //   setInfoOpen(false);
+    // }
+    setInfoOpen(true);
+    // zoom in a little on marker click
+    if (zoom < 13) {
+      setZoom(14);
+    }
+  };
 
   return (
     <div style={{ 
       marginTop: '100px' }}>
+
       <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
         <GoogleMap 
           mapContainerStyle={mapContainerStyle} 
@@ -39,16 +61,25 @@ function Map(props) {
           library
           >
           {props.allPrices.map((price, i) => (
-
             <Marker
-              onLoad={onLoad}
+              onLoad={marker => markerLoadHandler(marker, price)}
+              onClick={event => markerClickHandler(event, price)}
               position={{lat: Number(price.lat), lng: Number(price.long)}}
               key={i}
-              label={price.cost}
             />
-
           ))}
 
+          {infoOpen && selectedPlace && (
+            <InfoWindow
+              position={{lat: Number(selectedPlace.lat), lng: Number(selectedPlace.long)}}
+              onCloseClick={() => setInfoOpen(false)}
+            >
+              <div>
+                <h5>{selectedPlace.provider}</h5>
+                <h5>{selectedPlace.cost}</h5>
+              </div>
+            </InfoWindow>
+          )}
         </GoogleMap>
       </LoadScript>
     </div>

@@ -7,4 +7,9 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  margin-top: 50px;
+}
+
+.price-pulldown {
+  margin-bottom: 10px;
 }

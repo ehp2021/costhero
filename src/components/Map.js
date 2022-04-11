@@ -29,7 +29,7 @@ function Map() {
   return (
     <div style={{ 
       marginTop: '100px' }}>
-      <LoadScript googleMapsApiKey="AIzaSyB85hekHCMvyWrYiFCymBvvKAqQRa8Wwg8">
+      <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
         <GoogleMap 
           mapContainerStyle={mapContainerStyle} 
           zoom={14}

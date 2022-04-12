@@ -3,72 +3,34 @@ import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
-import Drawer from "@mui/material/Drawer";
-import CloseIcon from "@mui/icons-material/Close";
-import Divider from "@mui/material/Divider";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import MailOutlineIcon from '@mui/icons-material/MailOutline';
-import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
-import LibraryBooksOutlinedIcon from '@mui/icons-material/LibraryBooksOutlined';
-import IconButton from '@mui/material/IconButton';
+import {Button} from "@material-ui/core";
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
-import Search from './Search';
 
-const SearchStyle = styled('div')(({ theme }) => ({
-  position: 'relative',
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  '&:hover': {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginLeft: 0,
-  width: '100%',
-  [theme.breakpoints.up('sm')]: {
-    marginLeft: theme.spacing(1),
-    width: 'auto',
-  },
-}));
 
-const SearchIconWrapper = styled('div')(({ theme }) => ({
-  padding: theme.spacing(0, 2),
-  height: '100%',
-  position: 'absolute',
-  pointerEvents: 'none',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center',
-}));
+//hamburger menu imports
+// import Drawer from "@mui/material/Drawer";
+// import CloseIcon from "@mui/icons-material/Close";
+// import Divider from "@mui/material/Divider";
+// import ListItemButton from "@mui/material/ListItemButton";
+// import ListItemIcon from "@mui/material/ListItemIcon";
+// import ListItemText from "@mui/material/ListItemText";
+// import MailOutlineIcon from '@mui/icons-material/MailOutline';
+// import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+// import LibraryBooksOutlinedIcon from '@mui/icons-material/LibraryBooksOutlined';
+// import IconButton from '@mui/material/IconButton';
 
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: 'inherit',
-  '& .MuiInputBase-input': {
-    padding: theme.spacing(1, 1, 1, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      width: '12ch',
-      '&:focus': {
-        width: '20ch',
-      },
-    },
-  },
-}));
+function Header(props) {
+  // const [open, setState] = useState(false);
+  // const toggleDrawer = (open) => (event) => {
+  //   if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+  //     return;
+  //   }
+  //   setState(open);
+  // };
 
-function Header() {
-  const [open, setState] = useState(false);
 
-  const toggleDrawer = (open) => (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      return;
-    }
-    //changes the function state according to the value of open
-    setState(open);
-  };
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -76,7 +38,9 @@ function Header() {
         position="fixed" 
         style={{background: '#565656'}}>
         <Toolbar>
-          <IconButton
+
+{/* hamburger menu */}
+          {/* <IconButton
             size="large"
             edge="start"
             color="inherit"
@@ -87,7 +51,7 @@ function Header() {
             <MenuIcon />
           </IconButton>
 
-          {/* The outside of the drawer */}
+  // outside the drawer
           <Drawer
             anchor="left" 
             variant="temporary" //if and how easily the drawer can be closed
@@ -101,7 +65,7 @@ function Header() {
                   backgroundColor: "#fff",
                   color: "#000"
                 }}>
-              {/* The inside of the drawer */}
+  //The inside of the drawer
               <IconButton sx={{mb: 2}}>
                 <CloseIcon onClick={toggleDrawer(false)} />
               </IconButton>
@@ -131,29 +95,31 @@ function Header() {
                     </ListItemButton>
                   </Box>
             </Box>
-          </Drawer>
+          </Drawer> */}
 
 
           <Typography
             variant="h6"
             noWrap
             component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+            sx={{ flexGrow: 1, color: "#fff", display: { xs: 'none', sm: 'block' } }}
           >
             CostHero
           </Typography>
-          <Typography>Search for Lasik Costs in Your area</Typography>
 
-          <SearchStyle>
-            {/* <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper> */}
-            <Search />
-            {/* <StyledInputBase
-              placeholder="Enter location…"
-              inputProps={{ 'aria-label': 'search' }}
-            /> */}
-          </SearchStyle>
+          <Typography sx={{flexGrow: 0.1, color: "#fff"}}>About</Typography>
+          <Typography sx={{flexGrow: 0.1, color: "#fff"}}>Contact Us</Typography>
+          <Typography sx={{flexGrow: 0.1, color: "#fff"}}>Email</Typography>
+
+          <Box>
+              <Button 
+                onClick={props.openNewPriceModal} 
+                variant="contained"
+                style={{background: '#bebebe'}}
+              >
+                  Post Price
+              </Button>
+            </Box>
 
         </Toolbar>
       </AppBar>

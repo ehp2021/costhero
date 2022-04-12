@@ -4,7 +4,7 @@ import LocationOnOutlinedIcon from "@material-ui/icons/LocationOnOutlined";
 import Rating from "@material-ui/lab"
 import mapStyles from './mapStyles';
 import { GoogleMap, LoadScript, Marker, InfoWindow} from "@react-google-maps/api";
-
+import Search from './Search';
 
 const coordinates ={lat: 40.770981, lng: -73.976429};
 const mapContainerStyle = {
@@ -14,7 +14,7 @@ const mapContainerStyle = {
 const library = "places";
 
 const options = {
-    styles: mapStyles,
+    // styles: mapStyles,
     disableDefaultUI: true,
     zoomControl: true,
     zoom: 1,
@@ -52,6 +52,8 @@ function Map(props) {
     <div style={{ 
       marginTop: '100px' }}>
 
+      <Search />
+
       <LoadScript googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
         <GoogleMap 
           mapContainerStyle={mapContainerStyle} 
@@ -76,6 +78,7 @@ function Map(props) {
             >
               <div>
                 <h5>{selectedPlace.provider}</h5>
+                {/* <h5>{selectedPlace.cost2}</h5>  just the price*/}
                 <h5>{selectedPlace.cost}</h5>
               </div>
             </InfoWindow>

@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
 import './Header.css';
-import { styled, alpha } from '@mui/material/styles';
+// import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import {Button} from "@material-ui/core";
 import Typography from '@mui/material/Typography';
-import InputBase from '@mui/material/InputBase';
-import MenuIcon from '@mui/icons-material/Menu';
+// import InputBase from '@mui/material/InputBase';
+// import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
 
 //hamburger menu imports

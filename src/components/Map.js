@@ -1,9 +1,7 @@
 import React, {useState} from 'react';
-import {Paper, Typography, useMediaQuery} from "@material-ui/core";
-import LocationOnOutlinedIcon from "@material-ui/icons/LocationOnOutlined";
-import Rating from "@material-ui/lab"
-import mapStyles from './mapStyles';
-import { GoogleMap, LoadScript, Marker, InfoWindow} from "@react-google-maps/api";
+// import Rating from "@material-ui/lab"
+// import mapStyles from './mapStyles';
+import { GoogleMap, LoadScript, Marker, InfoWindow, Autocomplete} from "@react-google-maps/api";
 import Search from './Search';
 
 const coordinates ={lat: 40.770981, lng: -73.976429};
@@ -11,7 +9,7 @@ const mapContainerStyle = {
   height: '90vh',
   width: '100%'
 } 
-const library = "places";
+const libraries = "places";
 
 const options = {
     // styles: mapStyles,
@@ -48,6 +46,7 @@ function Map(props) {
     }
   };
 
+
   return (
     <div style={{ 
       marginTop: '100px' }}>
@@ -60,8 +59,9 @@ function Map(props) {
           zoom={14}
           center={coordinates}
           options={options}
-          library
+          libraries
           >
+
           {props.allPrices.map((price, i) => (
             <Marker
               onLoad={marker => markerLoadHandler(marker, price)}

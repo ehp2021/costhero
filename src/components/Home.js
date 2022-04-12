@@ -2,8 +2,7 @@ import React, {useState, useEffect}from 'react';
 import './Home.css';
 import CostList from './CostList';
 import Map from './Map';
-import PostNew from './PostNew';
-import {CssBaseline, Grid, Container, Box} from '@material-ui/core';
+import {CssBaseline, Grid, Container } from '@material-ui/core';
 import axios from 'axios';
 
 function Home() {

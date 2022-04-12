@@ -113,7 +113,7 @@ function Header() {
                         <AddCircleOutlineOutlinedIcon 
                           sx={{color: "#c8d7d4"}}/>
                       </ListItemIcon>
-                      <ListItemText primary="Submit" />
+                      <ListItemText primary="Submit Price" />
                     </ListItemButton>
 
                     <ListItemButton>

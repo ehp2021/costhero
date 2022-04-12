@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import './Header.css';
 import { styled, alpha } from '@mui/material/styles';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
@@ -7,7 +8,7 @@ import {Button} from "@material-ui/core";
 import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import MenuIcon from '@mui/icons-material/Menu';
-
+import { Link } from 'react-router-dom';
 
 //hamburger menu imports
 // import Drawer from "@mui/material/Drawer";
@@ -97,19 +98,20 @@ function Header(props) {
             </Box>
           </Drawer> */}
 
-
+          
           <Typography
             variant="h6"
             noWrap
             component="div"
             sx={{ flexGrow: 1, color: "#fff", display: { xs: 'none', sm: 'block' } }}
           >
-            CostHero
+            <Link to="/">CostHero</Link>
           </Typography>
+        
 
-          <Typography sx={{flexGrow: 0.1, color: "#fff"}}>About</Typography>
-          <Typography sx={{flexGrow: 0.1, color: "#fff"}}>Contact Us</Typography>
-          <Typography sx={{flexGrow: 0.1, color: "#fff"}}>Email</Typography>
+          <Typography sx={{flexGrow: 0.1, color: "#fff"}}><Link to="/about">About</Link></Typography>
+          <Typography sx={{flexGrow: 0.1, color: "#fff"}}><Link to="/contact">Contact Us</Link></Typography>
+          {/* <Typography sx={{flexGrow: 0.1, color: "#fff"}}>Email</Typography> */}
 
           <Box>
               <Button 

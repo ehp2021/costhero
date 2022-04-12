@@ -9,7 +9,7 @@ import {Box,
 } from "@material-ui/core";
 
 
-function About (){
+function Contact (){
 
   return(
     <div
@@ -17,7 +17,7 @@ function About (){
     >
       <Box>
         <Typography variant="h2">
-          Search for Lasik Costs in Your Area
+          Contact Form Here
         </Typography>
       </Box>
       
@@ -35,4 +35,4 @@ function About (){
   )
 }
 
-export default About;
+export default Contact;

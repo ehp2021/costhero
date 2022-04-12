@@ -1,0 +1,6 @@
+
+a:link, a:visited, a:active { 
+  color: white;
+  text-decoration: none; 
+  transition: 0.1s cubic-bezier(.33,.66,.66,1);
+}

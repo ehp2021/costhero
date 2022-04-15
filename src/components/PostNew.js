@@ -14,7 +14,7 @@ import {Box,
 import FormHelperText from '@mui/material/FormHelperText';
 import {Close as CloseIcon} from "@material-ui/icons";
 import './PostNew.css';
-
+import axios from 'axios';
 
 const initialState = {
   area: "",
@@ -27,6 +27,7 @@ const initialState = {
   uncategorized: "",
   email: "",
 }
+
 
 function PostNew(props) {
   const [loading, setLoading] = useState(false);
@@ -41,10 +42,35 @@ function PostNew(props) {
     }));
   };
  
+  const postPrice = async (priceDetails) => {
+    const newPriceDetails = JSON.stringify(priceDetails)  
+    const config = {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json' 
+      }
+    }
+      console.log(newPriceDetails, "NEW DETAILS working?")
 
-  const handleSubmit = async () => {
+      await axios.post('https://wxp5ircbue.execute-api.us-east-1.amazonaws.com/api/datapoints',
+        newPriceDetails, 
+        config
+        )
+          .then(res => {
+            console.log(res.data, "RES.DATA WORKING")
+          })
+          .catch(function (error) {
+            console.log(error.response.data); // NOTE - use "error.response.data` (not "error")
+          });
+        // getPrices();
+  }
+
+  const handleSubmit = (priceDetails) => {
+    // if (!priceDetails.cost.length || !priceDetails.provider.length) 
+    //   return
     setLoading(true);
-    await props.postPrice(priceDetails);
+    // postPrice({...priceDetails, [e.target.name]: e.target.value});
+    postPrice(priceDetails);
     closeModal();
   }
 
@@ -84,7 +110,6 @@ function PostNew(props) {
               placeholder="City, State, Country *"
               disableUnderline 
               fullWidth
-              required="true"
             />
           </Grid>
 
@@ -99,7 +124,6 @@ function PostNew(props) {
               value={priceDetails.surgery_type}
               disableUnderline 
               fullWidth
-              required="true"
             />
           </Grid>
 {/* ROW 2 */}
@@ -129,7 +153,6 @@ function PostNew(props) {
               placeholder="Lasik Cost *"
               disableUnderline 
               fullWidth
-              required="true"
             />
             <FormHelperText>Please include the currency i.e. $4300</FormHelperText>
           </Grid>
@@ -177,28 +200,10 @@ function PostNew(props) {
               placeholder="Doctor Or Practice Name *"
               disableUnderline 
               fullWidth
-              required="true"
             />
           </Grid>
-
+          
           <Grid item xs={6}>
-            <FilledInput 
-              onChange={(e)=> {
-                e.persist();
-                handleChange(e)}
-              }
-              name="uncategorized"
-              value={priceDetails.uncategorized}
-              placeholder="Optional Comments"
-              disableUnderline 
-              fullWidth
-            />
-            <FormHelperText>Any other comments on your eyes post-Lasik or the experience</FormHelperText>
-          </Grid>
-
-
-{/* ROW 5 */}
-          <Grid item xs={12}>
           <FilledInput 
               onChange={(e)=> {
                 e.persist();
@@ -212,12 +217,32 @@ function PostNew(props) {
             />
             <FormHelperText>Please provide your email in case we need to clarify any details about your submission</FormHelperText>
           </Grid>
+          
+
+
+{/* ROW 5 */}
+
+          <Grid item xs={12}>
+            <FilledInput 
+              onChange={(e)=> {
+                e.persist();
+                handleChange(e)}
+              }
+              name="uncategorized"
+              value={priceDetails.uncategorized}
+              placeholder="Optional Comments"
+              disableUnderline 
+              fullWidth
+            />
+            <FormHelperText>Any other comments on your eyes post-Lasik or the experience</FormHelperText>
+          </Grid>
+          
 
         </Grid>
       </DialogContent>
       <DialogActions>
         <Box color="red" width="100%" display="flex" justifyContent="space-between">
-          <Typography>* Required fields</Typography>
+          <Typography variant="caption">* Required fields</Typography>
           <Button 
             onClick={handleSubmit}
             variant="contained" 

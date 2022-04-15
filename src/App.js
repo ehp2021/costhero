@@ -14,7 +14,6 @@ import PostNew from './components/PostNew';
 function App() {
   const [newPriceModal, setNewPriceModal] = useState(false);
 
-
   return (
     <>
       <BrowserRouter>
@@ -25,7 +24,6 @@ function App() {
           <PostNew 
             closeModal={() => setNewPriceModal(false)}
             newPriceModal={newPriceModal} 
-            // postPrice={postPrice}
             />
         </Box>
 

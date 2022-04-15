@@ -1,0 +1,36 @@
+.search-container {
+  background: #fff; 
+  height: 40px; 
+  width: 100%;
+  color: #000000; 
+  border: 1px solid #cccccc; 
+  margin-bottom: 15px; 
+  -webkit-appearance: none; 
+  border-radius: 4px 0px 0px 4px; 
+  -moz-border-radius: 4px 0px 0px 4px; 
+  -webkit-border-radius: 4px 0px 0px 4px;
+  display: inline-block;
+  text-align: left;
+  font-size: 14px; 
+  font-weight: 500; 
+  background-size:18px 18px;
+}
+
+/* #ComboboxInput {
+  margin: 5px;
+  font-size: 1.5rem;
+  width: 100%;
+} */
+
+.locate {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  z-index: 10;
+}
+.locate img {
+  width: 30px;
+  cursor: pointer;
+}

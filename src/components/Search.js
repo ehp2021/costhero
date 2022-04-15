@@ -1,4 +1,4 @@
-import { Autocomplete } from "@react-google-maps/api";
+// import { Autocomplete } from "@react-google-maps/api";
 import {Box, 
   Grid, 
   FilledInput,
@@ -15,12 +15,12 @@ const Search = () => {
   return (
     <>
       <Box>
-        <Autocomplete>
+        {/* <Autocomplete> */}
           <FilledInput 
             disableUnderline 
             fullWidth
           />
-        </Autocomplete>
+        {/* </Autocomplete> */}
         <Button
           variant="contained" 
           disableElevation

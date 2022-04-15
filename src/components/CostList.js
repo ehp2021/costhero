@@ -12,9 +12,9 @@ function CostList(props) {
   const [prices, setPrices] = useState('')
 
   return (
-    <div className="cost-list-container">
+    <div className="cost-list-container" style={{marginTop: "70px"}}>
       {/* <Typography variant="h7">Search for Lasik prices around you</Typography> */}
-      <div className="cost-list-categories">
+      {/* <div className="cost-list-categories">
         <div className="price-pulldown">
           <FormControl>
             <InputLabel>Price(both eyes)</InputLabel>
@@ -36,7 +36,8 @@ function CostList(props) {
               <MenuItem value={4}>Above 4.0</MenuItem>
             </Select>
           </FormControl>
-      </div>
+      </div> */}
+      
       <Grid container spacing={3} >
         {props.allPrices?.slice(0,15).map((price, i) => (
           <Grid item key={i} xs={12}>

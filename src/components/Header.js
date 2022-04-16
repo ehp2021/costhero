@@ -38,7 +38,7 @@ function Header(props) {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar 
         position="fixed" 
-        style={{background: '#fff'}}>
+        style={{background: '#fee3ed'}}>
         <Toolbar>
 
 {/* hamburger menu */}
@@ -110,7 +110,7 @@ function Header(props) {
             <Link to="/"><VisibilityIcon style={{color: '#222286', marginRight: '5px'}}/>CostHero</Link>
           </Typography>
         
-
+          <Typography variant="caption" sx={{flexGrow: 0.1, color: '#222286'}}>Search For Lasik Costs In Your Area</Typography>
           <Typography sx={{flexGrow: 0.1, color: "#000"}}><Link to="/about">ABOUT</Link></Typography>
           <Typography sx={{flexGrow: 0.1, color: "#000"}}><Link to="/contact">CONTACT</Link></Typography>
           {/* <Typography sx={{flexGrow: 0.1, color: "#fff"}}>Email</Typography> */}

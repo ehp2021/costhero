@@ -18,7 +18,7 @@ const mapContainerStyle = {
 
 
 const options = {
-    styles: mapStyles,
+    // styles: mapStyles,
     disableDefaultUI: true,
     zoomControl: true,
     zoom: 14,
@@ -73,10 +73,12 @@ function Map(props) {
       {/* <LoadScript 
         googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY} 
       > */}
-        <Typography variant="body1">Search for Lasik Costs In Your Area</Typography>
+        <Typography variant="body1">How much is Lasik in Your Area? </Typography>
 
         <Search  goToMap={goToMap} />
       
+        <Typography variant="body2">Click on the eye marker for Lasik pricing and other information</Typography>
+
         <GoogleMap 
           mapContainerStyle={mapContainerStyle} 
           zoom={14}

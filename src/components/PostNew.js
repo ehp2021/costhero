@@ -14,7 +14,7 @@ import {Box,
 import FormHelperText from '@mui/material/FormHelperText';
 import {Close as CloseIcon} from "@material-ui/icons";
 import './PostNew.css';
-import axios from 'axios';
+
 
 const initialState = {
   area: "",
@@ -43,39 +43,12 @@ function PostNew(props) {
     }));
   };
  
-  const postPrice = async (priceDetails, e) => {
-    // const JSONPriceDetails = JSON.stringify(price)  
-    e.preventDefault();
-    console.log(priceDetails, "PRICE INFO")
-    console.log(e, "E")
-    const config = {
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json' 
-      }
-    }
-      // console.log(JSONPriceDetails, "NEW DETAILS working?")
 
-      await axios.post('https://wxp5ircbue.execute-api.us-east-1.amazonaws.com/api/datapoints',
-        // JSONPriceDetails, 
-        priceDetails,
-        config
-        )
-          .then(res => {
-            console.log(res.data, "RES.DATA WORKING??")
-          })
-          .catch(function (error) {
-            console.log(error.response.data); // NOTE - use "error.response.data` (not "error")
-          });
-        // getPrices();
-  }
-
-  const handleSubmit = (priceDetails, e) => {
+  const handleSubmit = async () => {
     // if (!priceDetails.cost.length || !priceDetails.provider.length) 
     //   return
     setLoading(true);
-    postPrice({...priceDetails, [e.target.name]: e.target.value});
-    
+    await props.postPrice(priceDetails);
     closeModal();
   }
 
@@ -86,8 +59,6 @@ function PostNew(props) {
     setLoading(false);
     props.closeModal();
   }
-
-  // console.log(priceDetails,"price working?")
 
   return (
     <Dialog open={props.newPriceModal} fullWidth>

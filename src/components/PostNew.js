@@ -24,8 +24,9 @@ const initialState = {
   free_touch_up_policy: "",
   prescription_prior: "",
   provider: "",
-  uncategorized: "",
+  others: "",
   email: "",
+  source_ip: "",
 }
 
 
@@ -42,22 +43,26 @@ function PostNew(props) {
     }));
   };
  
-  const postPrice = async (priceDetails) => {
-    const newPriceDetails = JSON.stringify(priceDetails)  
+  const postPrice = async (priceDetails, e) => {
+    // const JSONPriceDetails = JSON.stringify(price)  
+    e.preventDefault();
+    console.log(priceDetails, "PRICE INFO")
+    console.log(e, "E")
     const config = {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json' 
       }
     }
-      console.log(newPriceDetails, "NEW DETAILS working?")
+      // console.log(JSONPriceDetails, "NEW DETAILS working?")
 
       await axios.post('https://wxp5ircbue.execute-api.us-east-1.amazonaws.com/api/datapoints',
-        newPriceDetails, 
+        // JSONPriceDetails, 
+        priceDetails,
         config
         )
           .then(res => {
-            console.log(res.data, "RES.DATA WORKING")
+            console.log(res.data, "RES.DATA WORKING??")
           })
           .catch(function (error) {
             console.log(error.response.data); // NOTE - use "error.response.data` (not "error")
@@ -65,12 +70,12 @@ function PostNew(props) {
         // getPrices();
   }
 
-  const handleSubmit = (priceDetails) => {
+  const handleSubmit = (priceDetails, e) => {
     // if (!priceDetails.cost.length || !priceDetails.provider.length) 
     //   return
     setLoading(true);
-    // postPrice({...priceDetails, [e.target.name]: e.target.value});
-    postPrice(priceDetails);
+    postPrice({...priceDetails, [e.target.name]: e.target.value});
+    
     closeModal();
   }
 
@@ -229,7 +234,7 @@ function PostNew(props) {
                 handleChange(e)}
               }
               name="uncategorized"
-              value={priceDetails.uncategorized}
+              value={priceDetails.others}
               placeholder="Optional Comments"
               disableUnderline 
               fullWidth

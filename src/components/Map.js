@@ -1,28 +1,16 @@
-import React, {useState, useRef, useCallback} from 'react';
+import React, {useState, useRef, useCallback, useEffect} from 'react';
 import mapStyles from './mapStyles';
 import './Map.css';
-import {Button} from "@material-ui/core";
+import {Button, Box, Typography} from "@material-ui/core";
 import { GoogleMap, LoadScript, Marker, InfoWindow} from "@react-google-maps/api";
 import Divider from "@mui/material/Divider";
-import {Chip} from "@material-ui/core";
-// import Search from './Search';
+import Search from './Search';
 
-import usePlacesAutocomplete, {
-  getGeocode,
-  getLatLng,
-} from "use-places-autocomplete";
-import {
-  Combobox,
-  ComboboxInput,
-  ComboboxPopover,
-  ComboboxList,
-  ComboboxOption,
-} from "@reach/combobox";
-import "@reach/combobox/styles.css";
+
 
 const coordinates ={lat: 40.770981, lng: -73.976429};
 const mapContainerStyle = {
-  height: '90vh',
+  height: '70vh',
   width: '100%'
 } 
 
@@ -33,8 +21,9 @@ const options = {
     styles: mapStyles,
     disableDefaultUI: true,
     zoomControl: true,
-    zoom: 1,
-    minZoom: 1
+    zoom: 14,
+    minZoom: 2,
+
   }
 
 function Map(props) {
@@ -43,7 +32,6 @@ function Map(props) {
   const [selectedPlace, setSelectedPlace] = useState(null);
   const [markerMap, setMarkerMap] = useState({});
 
-  // const [ libraries ] = useState(['places']);
 
   const mapRef = useRef();
   const onMapLoad = useCallback((map)=> {
@@ -51,10 +39,10 @@ function Map(props) {
   }, []); 
 
   // PANS TO searched position on map
-  const panTo = useCallback(({lat, lng}) => {
-    mapRef.current.panTo({lat, lng});
-    mapRef.current.setZoom(14);
-  })
+  const goToMap = useCallback(({lat, lng}) => {
+    mapRef.current?.panTo({lat, lng});
+    mapRef.current?.setZoom(12);
+  }, [])
 
     // create a mapping of our prices to markers
     const markerLoadHandler = (marker, price) => {
@@ -82,18 +70,20 @@ function Map(props) {
     <div style={{ 
       marginTop: '100px' }}>
 
-      <Search panTo={panTo} />
-
       {/* <LoadScript 
         googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY} 
       > */}
+        <Typography variant="body1">Search for Lasik Costs In Your Area</Typography>
+
+        <Search  goToMap={goToMap} />
       
         <GoogleMap 
           mapContainerStyle={mapContainerStyle} 
           zoom={14}
+          minZoom={1}
           center={coordinates}
           options={options}
-          // libraries
+          onLoad={onMapLoad}
           >
 
           {props.allPrices.map((price, i) => (
@@ -104,7 +94,7 @@ function Map(props) {
               key={i}
               icon={{
                 url: "/eye.png",
-                scaledSize: new window.google.maps.Size(30,30)
+                scaledSize: new window.google.maps.Size(40,40)
               }}
             />
           ))}
@@ -116,12 +106,25 @@ function Map(props) {
               key={selectedPlace.id}
             >
               <div>
-                <h5>Provider: {selectedPlace.provider}</h5>
-                <Divider sx={{mb: 1}} />
-                {/* <h5>{selectedPlace.cost2}</h5>  just the price*/}
-                <h5>Cost: {selectedPlace.cost ? selectedPlace.cost : "N/A"}</h5>
-                <h5>Date: {selectedPlace.time ? selectedPlace.time : "N/A"}</h5>
-                <h5>Location: {selectedPlace.area ? selectedPlace.area : "N/A"}</h5>
+                <Box>
+                  <Typography variant="body1" sx={{ flexGrow: 0.01 }} >
+                    Provider: {selectedPlace.provider ? selectedPlace.provider : "N/A"}
+                  </Typography>
+                  <h5>Surgery Type: {selectedPlace.surgery_type ? selectedPlace.surgery_type : "N/A"}</h5>
+                  
+                  <Divider sx={{mb: 1}} />
+                  
+                  <h5>Cost: {selectedPlace.processed_cost ? selectedPlace.processed_cost : "N/A"} {selectedPlace.currency ? selectedPlace.currency : "N/A"}</h5>  
+                  {/* <h5>Cost: {selectedPlace.cost ? selectedPlace.cost : "N/A"}</h5> */}
+                  <h5>Date Of Surgery: {selectedPlace.time ? selectedPlace.time : "N/A"}</h5>
+                  <h5>Prescription Prior: {selectedPlace.prescription_prior ? selectedPlace.prescription_prior : "N/A"}</h5>
+                  <Typography variant="caption" sx={{ flexGrow: 0.01 }} >
+                    Comments: {selectedPlace.raw ? selectedPlace.raw : "N/A"}
+                  </Typography>
+                  <Typography variant="caption" sx={{ flexGrow: 0.01 }} >
+                    Free Touch Up Policy?: {selectedPlace.free_touch_up_policy ? selectedPlace.free_touch_up_policy : "N/A"}
+                  </Typography>
+                </Box>
               </div>
             </InfoWindow>
           )}
@@ -134,80 +137,24 @@ function Map(props) {
 export default Map;
 
 //Locate person
-function Locate({ panTo }) {
-  return (
-    <Button
-      className="locate"
-      onClick={() => {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            panTo({
-              lat: position.coords.latitude,
-              lng: position.coords.longitude,
-            });
-          },
-          () => null
-        );
-      }}
-    >
-      <img src="/compass.png" alt="compass" />
-    </Button>
-  );
-}
+// function Locate({ panTo }) {
+//   return (
+//     <Button
+//       className="locate"
+//       onClick={() => {
+//         navigator.geolocation.getCurrentPosition(
+//           (position) => {
+//             panTo({
+//               lat: position.coords.latitude,
+//               lng: position.coords.longitude,
+//             });
+//           },
+//           () => null
+//         );
+//       }}
+//     >
+//       <img src="/compass.png" alt="compass" />
+//     </Button>
+//   );
+// }
 
-// SEARCH SECTION
-
-function Search({panTo}) {
-  const {
-    ready, 
-    value, 
-    suggestions: {status, data}, 
-    setValue, 
-    clearSuggestions
-  } = usePlacesAutocomplete({
-    requestOptions: {
-      location: {lat: ()=> 40.770981, lng: () => -73.976429},
-      radius: 200 * 1000, // in meters 
-    }
-  });
-
-  return (
-    <div 
-      className="search-container"
-    >
-      <Combobox 
-        onSelect={async (address) => {
-          setValue(address, false);
-          clearSuggestions();
-          try {
-            const results = await getGeocode({address});
-            console.log(results, "RESULTS?")
-            const {lat, lng} = await getLatLng(results[0]);
-            panTo({lat, lng});
-          } catch(error) {
-            console.log("error")
-          }
-        }}
-      >
-        <ComboboxInput 
-          className="search-container"
-          value={value}
-          onChange={(e) => { setValue(e.target.value);}}
-          disabled={!ready}
-          placeholder="Search Location..."
-        />
-
-        <ComboboxPopover>
-          <ComboboxList>
-            {status === "OK" &&
-            data.map(({ id, description }) => (
-              <ComboboxOption 
-                key={id} 
-                value={description} />
-            ))}
-          </ComboboxList>
-        </ComboboxPopover>
-      </Combobox>
-    </div>
-  )
-}

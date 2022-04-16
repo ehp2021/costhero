@@ -1,37 +1,71 @@
-// import { Autocomplete } from "@react-google-maps/api";
-import {Box, 
-  Grid, 
-  FilledInput,
-  Button
-} from "@material-ui/core";
+import './Search.css';
+import usePlacesAutocomplete, {
+  getGeocode,
+  getLatLng,
+} from "use-places-autocomplete";
+import {
+  Combobox,
+  ComboboxInput,
+  ComboboxPopover,
+  ComboboxList,
+  ComboboxOption,
+} from "@reach/combobox";
+import "@reach/combobox/styles.css";
 
-const Search = () => {
+function Search({goToMap}) {
+  const {
+    ready, 
+    value, 
+    suggestions: {status, data}, 
+    setValue, 
+    clearSuggestions
+  } = usePlacesAutocomplete({
+    requestOptions: {
+      location: {lat: ()=> 40.770981, lng: () => -73.976429},
+      radius: 200 * 1000, // in meters 
+    }
+  });
 
-  // const onLoad = autocomplete => {
-  //   console.log('autocomplete: ', autocomplete)
-  // }
-
-    //https://github.com/wellyshen/use-places-autocomplete#load-the-library 
   return (
-    <>
-      <Box>
-        {/* <Autocomplete> */}
-          <FilledInput 
-            disableUnderline 
-            fullWidth
-          />
-        {/* </Autocomplete> */}
-        <Button
-          variant="contained" 
-          disableElevation
-          color="primary"
-        >
-          Search
-        </Button>
+    <div 
+      className="search-container"
+    >
+      <Combobox 
+        onSelect={async (address) => {
+          setValue(address, false);
+          clearSuggestions();
+          try {
+            const results = await getGeocode({address});
+            // console.log(results, "my address")
+            const { lat, lng } = await getLatLng(results[0]);
+            goToMap({lat, lng});
 
-      </Box>
-    </>
-  );
-};
+          } catch(error) {
+            console.log("error")
+          }
+        }}
+      >
+        <ComboboxInput 
+          className="search-container"
+          value={value}
+          onChange={(e) => { setValue(e.target.value);}}
+          disabled={!ready}
+          placeholder="Search Location..."
+        />
+
+        <ComboboxPopover>
+          <ComboboxList>
+            {status === "OK" &&
+            data.map(({ id, description }) => (
+              <ComboboxOption 
+                key={id} 
+                value={description} />
+            ))}
+          </ComboboxList>
+        </ComboboxPopover>
+      </Combobox>
+    </div>
+  )
+}
 
 export default Search;

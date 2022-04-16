@@ -1,4 +1,4 @@
-import React, {useState, useEffect}from 'react';
+import React, {useState, useEffect, useRef, useCallback}from 'react';
 import './Home.css';
 import CostList from './CostList';
 import Map from './Map';
@@ -42,11 +42,12 @@ useEffect(()=> {
     <Container>
       <CssBaseline />
       <Grid container spacing={3} style={{ width: '100%' }}>
-        <Grid item xs={12} md={4}>
+        {/* <Grid item xs={4} md={4}>
           <CostList allPrices={allPrices}/>
-        </Grid>
-        <Grid item xs={12} md={8}>
-          <Map allPrices={allPrices}/>
+        </Grid> */}
+        <Grid item xs={12} md={12}>
+
+          <Map allPrices={allPrices} />
         </Grid>
       </Grid>
     </Container>

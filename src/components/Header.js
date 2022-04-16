@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography';
 // import InputBase from '@mui/material/InputBase';
 // import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
+import VisibilityIcon from '@mui/icons-material/Visibility';
 
 //hamburger menu imports
 // import Drawer from "@mui/material/Drawer";
@@ -37,7 +38,7 @@ function Header(props) {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar 
         position="fixed" 
-        style={{background: '#565656'}}>
+        style={{background: '#fff'}}>
         <Toolbar>
 
 {/* hamburger menu */}
@@ -100,24 +101,25 @@ function Header(props) {
 
           
           <Typography
-            variant="h6"
+            variant="h4"
             noWrap
             component="div"
-            sx={{ flexGrow: 1, color: "#fff", display: { xs: 'none', sm: 'block' } }}
+            sx={{ flexGrow: 1, color: "#222286", 
+            fontWeight: '900'}}
           >
-            <Link to="/">CostHero</Link>
+            <Link to="/"><VisibilityIcon style={{color: '#222286', marginRight: '5px'}}/>CostHero</Link>
           </Typography>
         
 
-          <Typography sx={{flexGrow: 0.1, color: "#fff"}}><Link to="/about">About</Link></Typography>
-          <Typography sx={{flexGrow: 0.1, color: "#fff"}}><Link to="/contact">Contact Us</Link></Typography>
+          <Typography sx={{flexGrow: 0.1, color: "#000"}}><Link to="/about">ABOUT</Link></Typography>
+          <Typography sx={{flexGrow: 0.1, color: "#000"}}><Link to="/contact">CONTACT</Link></Typography>
           {/* <Typography sx={{flexGrow: 0.1, color: "#fff"}}>Email</Typography> */}
 
           <Box>
               <Button 
                 onClick={props.openNewPriceModal} 
                 variant="contained"
-                style={{background: '#bebebe'}}
+                style={{background: '#222286', color: "#fff"}}
               >
                   Post Price
               </Button>

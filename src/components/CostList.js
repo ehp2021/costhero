@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {CircularProgress, 
+import {CircularProgress, Box,
   Grid, Typography, InputLabel, 
   Select, MenuItem, FormControl} 
   from "@material-ui/core";
@@ -40,7 +40,7 @@ function CostList(props) {
       
       <Grid container spacing={3} >
         {props.allPrices?.slice(0,15).map((price, i) => (
-          <Grid item key={i} xs={12}>
+          <Grid item key={i} xs={12} m={12}>
             <CostDetails price={price} />
           </Grid>
         ))}

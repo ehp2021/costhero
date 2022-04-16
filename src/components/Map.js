@@ -109,11 +109,12 @@ function Map(props) {
             >
               <div>
                 <Box>
-                  <Typography variant="body1" sx={{ flexGrow: 0.01 }} >
-                    Provider: {selectedPlace.provider ? selectedPlace.provider : "N/A"}
-                  </Typography>
-                  <h5>Surgery Type: {selectedPlace.surgery_type ? selectedPlace.surgery_type : "N/A"}</h5>
-                  
+                  <Box style={{background: "#fee3ed", padding: '5px'}}>
+                    <Typography variant="body1" sx={{ flexGrow: 0.01 }} >
+                      Provider: {selectedPlace.provider ? selectedPlace.provider : "N/A"}
+                    </Typography>
+                    <h5>Surgery Type: {selectedPlace.surgery_type ? selectedPlace.surgery_type : "N/A"}</h5>
+                  </Box>
                   <Divider sx={{mb: 1}} />
                   
                   <h5>Cost: {selectedPlace.processed_cost ? selectedPlace.processed_cost : "N/A"} {selectedPlace.currency ? selectedPlace.currency : "N/A"}</h5>  

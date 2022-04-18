@@ -49,6 +49,7 @@ function Search({goToMap}) {
           className="search-container"
           value={value}
           onChange={(e) => { setValue(e.target.value);}}
+          //onClick --> post location keyword to API
           disabled={!ready}
           placeholder="Search Location..."
         />

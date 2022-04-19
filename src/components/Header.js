@@ -113,7 +113,8 @@ function Header(props) {
         
           {/* <Typography variant="body2" sx={{flexGrow: 0.1, color: '#222286'}}>Compare Lasik Costs From Real Patients</Typography> */}
           <Typography sx={{flexGrow: 0.1, color: "#000"}}><Link to="/about">ABOUT</Link></Typography>
-          <Typography sx={{flexGrow: 0.1, color: "#000"}}><Link to="/"><a href="https://tally.so#tally-open=mKdag3&tally-emoji-text=👋&tally-emoji-animation=wave">CONTACT US</a></Link></Typography>
+          <Typography sx={{flexGrow: 0.1, color: "#000"}}><Link to="/"><a href="https://tally.so#tally-open=mKdag3">CONTACT US</a></Link></Typography>
+          <Typography sx={{flexGrow: 0.1, color: "#000"}}><Link to="/"><a href="https://tally.so#tally-open=n0NK03">EMAIL SIGN-UP</a></Link></Typography>
           {/* <Typography sx={{flexGrow: 0.1, color: "#fff"}}>Email</Typography> */}
 
           <Box>

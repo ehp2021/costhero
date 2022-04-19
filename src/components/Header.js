@@ -99,18 +99,19 @@ function Header(props) {
             </Box>
           </Drawer> */}
 
-          
-          <Typography
-            variant="h4"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, color: "#222286", 
-            fontWeight: '900'}}
-          >
-            <Link to="/"><VisibilityIcon style={{color: '#222286', marginRight: '5px'}}/>CostHero</Link>
-          </Typography>
+          <Box sx={{ flexGrow: 1, color: "#222286"}}>
+            <Typography
+              variant="h4"
+              noWrap
+              component="div"
+              sx={{fontWeight: '900'}}
+            >
+              <Link to="/"><VisibilityIcon style={{color: '#222286', marginRight: '5px'}}/>CostHero</Link>
+              <Typography variant="caption" style={{color: '#222286'}}>beta</Typography>
+            </Typography>
+          </Box>
         
-          <Typography variant="caption" sx={{flexGrow: 0.1, color: '#222286'}}>Search and Compare Lasik Eye Surgery Costs From Real Patients In Your Area</Typography>
+          {/* <Typography variant="body2" sx={{flexGrow: 0.1, color: '#222286'}}>Compare Lasik Costs From Real Patients</Typography> */}
           <Typography sx={{flexGrow: 0.1, color: "#000"}}><Link to="/about">ABOUT</Link></Typography>
           <Typography sx={{flexGrow: 0.1, color: "#000"}}><Link to="/"><a href="https://tally.so#tally-open=mKdag3&tally-emoji-text=👋&tally-emoji-animation=wave">CONTACT US</a></Link></Typography>
           {/* <Typography sx={{flexGrow: 0.1, color: "#fff"}}>Email</Typography> */}
@@ -121,7 +122,7 @@ function Header(props) {
                 variant="contained"
                 style={{background: '#222286', color: "#fff"}}
               >
-                  Post Price
+                  Post Your LASIK Cost              
               </Button>
             </Box>
 

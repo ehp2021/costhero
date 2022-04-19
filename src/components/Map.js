@@ -68,16 +68,17 @@ function Map(props) {
 
   return (
     <div style={{ 
-      marginTop: '100px' }}>
+      marginTop: '70px' }}>
 
       {/* <LoadScript 
         googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY} 
       > */}
-        <Typography variant="h6">How Much Does Lasik Eye Surgery Cost Near Me? </Typography>
+        <Typography variant="h6" style={{marginBottom: '10px', color: '#222286'}}>Search and compare 427 real cost quotes from real patients from around the globe</Typography>
+        <Typography variant="body1">How Much Does Lasik Eye Surgery Cost Near Me? </Typography>
 
         <Search  goToMap={goToMap} />
       
-        <Typography variant="body1">Click on the eye marker for Lasik pricing and other information about the provider</Typography>
+        <Typography variant="body1">Click on the eye marker to open the info window for Lasik prices and other provider information</Typography>
 
         <GoogleMap 
           mapContainerStyle={mapContainerStyle} 

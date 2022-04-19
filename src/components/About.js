@@ -17,7 +17,7 @@ function About (){
     >
       <Box >
         <Typography variant="h5">
-          Our site allows you to quickly and easily search for and compare LASIK eye surgery costs in your area
+        Find out what others are paying for LASIK in your city.
         </Typography>
       </Box>
 

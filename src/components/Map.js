@@ -78,7 +78,7 @@ function Map(props) {
 
         <Search  goToMap={goToMap} />
       
-        <Typography variant="body1">Click on the eye marker to open the info window for Lasik prices and other provider information</Typography>
+        <Typography variant="body1">Click on the eye marker to view Lasik prices and other provider information</Typography>
 
         <GoogleMap 
           mapContainerStyle={mapContainerStyle} 

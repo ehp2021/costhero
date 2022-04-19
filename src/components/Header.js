@@ -110,7 +110,7 @@ function Header(props) {
             <Link to="/"><VisibilityIcon style={{color: '#222286', marginRight: '5px'}}/>CostHero</Link>
           </Typography>
         
-          <Typography variant="caption" sx={{flexGrow: 0.1, color: '#222286'}}>Search For Lasik Eye Surgery Costs In Your Area</Typography>
+          <Typography variant="caption" sx={{flexGrow: 0.1, color: '#222286'}}>Search and Compare Lasik Eye Surgery Costs From Real Patients In Your Area</Typography>
           <Typography sx={{flexGrow: 0.1, color: "#000"}}><Link to="/about">ABOUT</Link></Typography>
           <Typography sx={{flexGrow: 0.1, color: "#000"}}><Link to="/"><a href="https://tally.so#tally-open=mKdag3&tally-emoji-text=👋&tally-emoji-animation=wave">CONTACT US</a></Link></Typography>
           {/* <Typography sx={{flexGrow: 0.1, color: "#fff"}}>Email</Typography> */}

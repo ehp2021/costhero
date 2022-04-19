@@ -73,11 +73,11 @@ function Map(props) {
       {/* <LoadScript 
         googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY} 
       > */}
-        <Typography variant="body1">How much is Lasik in Your Area? </Typography>
+        <Typography variant="h6">How Much Does Lasik Eye Surgery Cost Near Me? </Typography>
 
         <Search  goToMap={goToMap} />
       
-        <Typography variant="body2">Click on the eye marker for Lasik pricing and other information</Typography>
+        <Typography variant="body1">Click on the eye marker for Lasik pricing and other information about the provider</Typography>
 
         <GoogleMap 
           mapContainerStyle={mapContainerStyle} 

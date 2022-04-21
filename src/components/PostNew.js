@@ -204,7 +204,7 @@ function PostNew(props) {
                 e.persist();
                 handleChange(e)}
               }
-              name="uncategorized"
+              name="others"
               value={priceDetails.others}
               placeholder="Optional Comments"
               disableUnderline 

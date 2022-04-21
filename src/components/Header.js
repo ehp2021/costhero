@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import {Button} from "@material-ui/core";
 import Typography from '@mui/material/Typography';
+import logo from '../owl.png';
 // import InputBase from '@mui/material/InputBase';
 // import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
@@ -99,16 +100,21 @@ function Header(props) {
             </Box>
           </Drawer> */}
 
-          <Box sx={{ flexGrow: 1, color: "#222286"}}>
-            <Typography
-              variant="h4"
-              noWrap
-              component="div"
-              sx={{fontWeight: '900'}}
-            >
-              <Link to="/"><VisibilityIcon style={{color: '#222286', marginRight: '5px'}}/>CostHero</Link>
+          <Box sx={{ display: "flex", flexDirection:"row", flexGrow: 1, color: "#222286"}}>
+              <Box style={{display: "flex", alignItems:"center"}}>
+                <img src={logo} color='#222286' width="40" height="40" alt="lasik costs" marginRight="15px" />
+              </Box>
+              <Link to="/">
+                <Typography
+                  variant="h4"
+                  noWrap
+                  component="div"
+                  sx={{fontWeight: '900', alignItems: "center"}}
+                >PriceOwl
+                </Typography>
+              </Link>
               <Typography variant="caption" style={{color: '#222286'}}>beta</Typography>
-            </Typography>
+            
           </Box>
         
           {/* <Typography variant="body2" sx={{flexGrow: 0.1, color: '#222286'}}>Compare Lasik Costs From Real Patients</Typography> */}

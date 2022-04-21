@@ -96,7 +96,8 @@ function Map(props) {
               position={{lat: Number(price.lat), lng: Number(price.long)}}
               key={i}
               icon={{
-                url: "/eye.png",
+                url: "/owl.png",
+                color: '#222286',
                 scaledSize: new window.google.maps.Size(40,40)
               }}
             />

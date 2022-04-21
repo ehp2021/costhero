@@ -7,31 +7,32 @@ import Toolbar from '@mui/material/Toolbar';
 import {Button} from "@material-ui/core";
 import Typography from '@mui/material/Typography';
 import logo from '../owl.png';
-// import InputBase from '@mui/material/InputBase';
-// import MenuIcon from '@mui/icons-material/Menu';
+import InputBase from '@mui/material/InputBase';
+import MenuIcon from '@mui/icons-material/Menu';
 import { Link } from 'react-router-dom';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 
 //hamburger menu imports
-// import Drawer from "@mui/material/Drawer";
-// import CloseIcon from "@mui/icons-material/Close";
-// import Divider from "@mui/material/Divider";
-// import ListItemButton from "@mui/material/ListItemButton";
-// import ListItemIcon from "@mui/material/ListItemIcon";
-// import ListItemText from "@mui/material/ListItemText";
-// import MailOutlineIcon from '@mui/icons-material/MailOutline';
-// import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
-// import LibraryBooksOutlinedIcon from '@mui/icons-material/LibraryBooksOutlined';
-// import IconButton from '@mui/material/IconButton';
+import Drawer from "@mui/material/Drawer";
+import CloseIcon from "@mui/icons-material/Close";
+import Divider from "@mui/material/Divider";
+import ListItemButton from "@mui/material/ListItemButton";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
+import MailOutlineIcon from '@mui/icons-material/MailOutline';
+import AddCircleOutlineOutlinedIcon from '@mui/icons-material/AddCircleOutlineOutlined';
+import LibraryBooksOutlinedIcon from '@mui/icons-material/LibraryBooksOutlined';
+import IconButton from '@mui/material/IconButton';
+import InfoIcon from '@mui/icons-material/Info';
 
 function Header(props) {
-  // const [open, setState] = useState(false);
-  // const toggleDrawer = (open) => (event) => {
-  //   if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-  //     return;
-  //   }
-  //   setState(open);
-  // };
+  const [open, setState] = useState(false);
+  const toggleDrawer = (open) => (event) => {
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+    setState(open);
+  };
 
 
 
@@ -43,18 +44,17 @@ function Header(props) {
         <Toolbar>
 
 {/* hamburger menu */}
-          {/* <IconButton
+          <IconButton
             size="large"
             edge="start"
-            color="inherit"
             aria-label="open drawer"
             onClick={toggleDrawer(true)}
-            sx={{ mr: 2 }}
+            sx={{ color: "#222286" }}
           >
             <MenuIcon />
           </IconButton>
 
-  // outside the drawer
+  {/* // outside the drawer */}
           <Drawer
             anchor="left" 
             variant="temporary" //if and how easily the drawer can be closed
@@ -63,42 +63,62 @@ function Header(props) {
             onOpen={toggleDrawer(true)} //function that is called when the drawer should open
           >
             <Box sx={{
-                  p: 2,
+                  // p: 2,
                   height: 1,
                   backgroundColor: "#fff",
                   color: "#000"
                 }}>
-  //The inside of the drawer
+  {/* //The inside of the drawer */}
               <IconButton sx={{mb: 2}}>
                 <CloseIcon onClick={toggleDrawer(false)} />
               </IconButton>
 
               <Divider sx={{mb: 2}} />
-                  <Box sx={{mb: 2}}>
-                    <ListItemButton>
-                      <ListItemIcon>
-                        <AddCircleOutlineOutlinedIcon 
-                          sx={{color: "#c8d7d4"}}/>
-                      </ListItemIcon>
-                      <ListItemText primary="Post Your LASIK Price" />
-                    </ListItemButton>
 
-                    <ListItemButton>
-                      <ListItemIcon>
-                        <LibraryBooksOutlinedIcon sx={{color: "#c8d7d4"}}/>
+                <Box sx={{mb: 1, display: "flex", flexDirection: "column"}}>
+                  
+                  <ListItemButton>
+                      <ListItemIcon >
+                        <InfoIcon sx={{color: "#c8d7d4"}}/>
                       </ListItemIcon >
-                      <ListItemText primary="Feedback" />
-                    </ListItemButton>
+                    <Link to="/about">
+                      <ListItemText primary="About" />
+                    </Link>
+                  </ListItemButton>
 
-                    <ListItemButton>
+                  <ListItemButton >
+                    <ListItemIcon>
+                      <AddCircleOutlineOutlinedIcon 
+                        sx={{color: "#c8d7d4"}}
+                      />
+                    </ListItemIcon>
+                    <a href="https://tally.so#tally-open=n0NK03&tally-layout=modal&tally-align-left=1">
+                      <ListItemText primary="Email Sign-Up" />
+                    </a>
+                  </ListItemButton>
+
+                  <ListItemButton>
+                    <ListItemIcon>
+                      <LibraryBooksOutlinedIcon sx={{color: "#c8d7d4"}}/>
+                    </ListItemIcon >
+                    <a href="https://tally.so/r/mREa9n">
+                      <ListItemText primary="Feedback" />
+                    </a>
+                  </ListItemButton>
+
+                  <ListItemButton>
+                    
                       <ListItemIcon>
                         <MailOutlineIcon sx={{color: "#c8d7d4"}} />
                       </ListItemIcon>
+
+                    <a href="https://tally.so#tally-open=mKdag3">
                       <ListItemText primary="Contact Us" />
-                    </ListItemButton>
-                  </Box>
+                    </a>
+                  </ListItemButton>
+                </Box>
             </Box>
-          </Drawer> */}
+          </Drawer> 
 
           <Box sx={{ display: "flex", flexDirection:"row", flexGrow: 1, color: "#222286"}}>
               <Box style={{display: "flex", alignItems:"center"}}>
@@ -118,9 +138,9 @@ function Header(props) {
           </Box>
         
           {/* <Typography variant="body2" sx={{flexGrow: 0.1, color: '#222286'}}>Compare Lasik Costs From Real Patients</Typography> */}
-          <Typography xs={4} md={2} sx={{flexGrow: 0.1, color: "#000"}}><Link to="/about">ABOUT</Link></Typography>
-          <Typography xs={4} md={2} sx={{flexGrow: 0.1, color: "#000"}}><a href="https://tally.so#tally-open=mKdag3">CONTACT US</a></Typography>
-          <Typography xs={4} md={2} sx={{flexGrow: 0.1, color: "#000"}}><a href="https://tally.so#tally-open=n0NK03&tally-layout=modal&tally-align-left=1">SIGN-UP</a></Typography>
+          {/* <Typography xs={4} md={2} sx={{flexGrow: 0.1, color: "#000"}}><Link to="/about">ABOUT</Link></Typography> */}
+          {/* <Typography xs={4} md={2} sx={{flexGrow: 0.1, color: "#000"}}><a href="https://tally.so#tally-open=mKdag3">CONTACT US</a></Typography> */}
+          {/* <Typography xs={4} md={2} sx={{flexGrow: 0.1, color: "#000"}}><a href="https://tally.so#tally-open=n0NK03&tally-layout=modal&tally-align-left=1">SIGN-UP</a></Typography> */}
           <Typography xs={4} md={2} sx={{flexGrow: 0.1, color: "#000"}}><a href="https://tally.so/r/mREa9n">FEEDBACK</a></Typography>
           {/* <Typography sx={{flexGrow: 0.1, color: "#fff"}}>Email</Typography> */}
 

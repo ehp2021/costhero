@@ -80,14 +80,14 @@ function Header(props) {
                         <AddCircleOutlineOutlinedIcon 
                           sx={{color: "#c8d7d4"}}/>
                       </ListItemIcon>
-                      <ListItemText primary="Submit Price" />
+                      <ListItemText primary="Post Your LASIK Price" />
                     </ListItemButton>
 
                     <ListItemButton>
                       <ListItemIcon>
                         <LibraryBooksOutlinedIcon sx={{color: "#c8d7d4"}}/>
                       </ListItemIcon >
-                      <ListItemText primary="Resources" />
+                      <ListItemText primary="Feedback" />
                     </ListItemButton>
 
                     <ListItemButton>
@@ -121,7 +121,7 @@ function Header(props) {
           <Typography xs={4} md={2} sx={{flexGrow: 0.1, color: "#000"}}><Link to="/about">ABOUT</Link></Typography>
           <Typography xs={4} md={2} sx={{flexGrow: 0.1, color: "#000"}}><a href="https://tally.so#tally-open=mKdag3">CONTACT US</a></Typography>
           <Typography xs={4} md={2} sx={{flexGrow: 0.1, color: "#000"}}><a href="https://tally.so#tally-open=n0NK03&tally-layout=modal&tally-align-left=1">SIGN-UP</a></Typography>
-          <Typography xs={4} md={2} sx={{flexGrow: 0.1, color: "#000"}}><a href="https://tally.so#tally-open=mREa9n&tally-layout=modal&tally-width=750&tally-auto-close=0">FEEDBACK</a></Typography>
+          <Typography xs={4} md={2} sx={{flexGrow: 0.1, color: "#000"}}><a href="https://tally.so/r/mREa9n">FEEDBACK</a></Typography>
           {/* <Typography sx={{flexGrow: 0.1, color: "#fff"}}>Email</Typography> */}
 
           <Box>

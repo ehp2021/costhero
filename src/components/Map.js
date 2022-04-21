@@ -137,6 +137,7 @@ function Map(props) {
           )}
         </GoogleMap>
       {/* </LoadScript> */}
+      <Box style={{display: "flex", flexDirection: "row", justifyContent: "center", marginTop: "20px", color: '#222286'}}>© Copyright EP & RH. All Rights Reserved</Box>
     </div>
 )
 }

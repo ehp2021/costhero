@@ -39,7 +39,7 @@ function CostList(props) {
       </div> */}
       
       <Grid container spacing={3} >
-        {props.allPrices?.slice(0,15).map((price, i) => (
+        {props.allPrices?.slice(0,5).map((price, i) => (
           <Grid item key={i} xs={12} m={12}>
             <CostDetails price={price} />
           </Grid>

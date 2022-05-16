@@ -18,21 +18,6 @@ const getPrices = async () => {
   setLoading(false);
 }
 
-
-// //post data to API
-// const postPrice = async (priceDetails) => {
-//   axios.post('https://wxp5ircbue.execute-api.us-east-1.amazonaws.com/api/datapoints',
-//     priceDetails
-//     )
-//     .then(res => {
-//       console.log(res.data)
-//     })
-//     .catch(function (error) {
-//       console.log(error);
-//     });
-//   getPrices();
-// }
-
 useEffect(()=> {
   getPrices();
 }, [])
@@ -42,11 +27,10 @@ useEffect(()=> {
     <Container>
       <CssBaseline />
       <Grid container spacing={3} style={{ width: '100%' }}>
-        {/* <Grid item xs={4} md={4}>
+        <Grid item xs={4} md={4}>
           <CostList allPrices={allPrices}/>
-        </Grid> */}
-        <Grid item xs={12} md={12}>
-
+        </Grid>
+        <Grid item xs={8} md={8}>
           <Map allPrices={allPrices} />
         </Grid>
       </Grid>

@@ -1,3 +1,4 @@
+import {useState, useEffect} from 'react'
 import './Search.css';
 import usePlacesAutocomplete, {
   getGeocode,
@@ -11,8 +12,11 @@ import {
   ComboboxOption,
 } from "@reach/combobox";
 import "@reach/combobox/styles.css";
+import axios from 'axios';
+import publicIp from 'public-ip';
 
 function Search({goToMap}) {
+
   const {
     ready, 
     value, 
@@ -26,6 +30,47 @@ function Search({goToMap}) {
     }
   });
 
+  // getting the IP address
+  // const sourceIp = async () => {
+  //   let result = await publicIp.v4();
+  //   console.log(result, "IP ADDRESS WORKING")
+  // }
+  
+  
+const [ip, setIp] = useState('')
+
+  // async function sourceIp() {
+  //   const data = await publicIp.v4();
+  //   // console.log(data, "WROKING?")
+  //   const result = JSON.parse(data)
+  //   console.log(typeof result, "what is result?")
+  //   return result
+  // }
+
+    // posting location to API
+  const postSearch = async (address) => {
+    await axios.post('https://wxp5ircbue.execute-api.us-east-1.amazonaws.com/api/location-search',
+        {"query_string": address, "source_ip": ip}
+        )
+          .then(res => {
+            console.log(res.data, "post location working??")
+          })
+          .catch(function (error) {
+            console.log(error.response.data); // NOTE - use "error.response.data` (not "error")
+          });
+  }
+
+  useEffect(() => {
+		const getIP = async () => {
+			const clientIP = await publicIp.v4()
+				.catch((err) => {console.log(err)}) || ''
+			setIp(clientIP)
+			return clientIP
+		}
+		getIP()
+    
+	},[])
+
   return (
     <div 
       className="search-container"
@@ -34,6 +79,7 @@ function Search({goToMap}) {
         onSelect={async (address) => {
           setValue(address, false);
           clearSuggestions();
+          postSearch(address);
           try {
             const results = await getGeocode({address});
             // console.log(results, "my address")
@@ -49,9 +95,9 @@ function Search({goToMap}) {
           className="search-container"
           value={value}
           onChange={(e) => { setValue(e.target.value);}}
-          //onClick --> post location keyword to API
           disabled={!ready}
           placeholder="Search Location..."
+          key={value}
         />
 
         <ComboboxPopover>

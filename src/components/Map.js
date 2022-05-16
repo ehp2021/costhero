@@ -114,15 +114,19 @@ function Map(props) {
               <div>
                 <Box>
                   <Box style={{background: "#fee3ed", padding: '5px'}}>
-                    <Typography variant="body1" sx={{ flexGrow: 0.01 }} >
-                      Provider: {selectedPlace.provider ? selectedPlace.provider : "N/A"}
+                    <Typography variant="body1" sx={{ flexGrow: 0.01 }}>
+                      Cost: {selectedPlace.processed_cost ? selectedPlace.processed_cost : "N/A"} {selectedPlace.currency ? selectedPlace.currency : "N/A"}
                     </Typography>
-                    <h5>Surgery Type: {selectedPlace.surgery_type ? selectedPlace.surgery_type : "N/A"}</h5>
+                    <Typography variant="body1" sx={{ flexGrow: 0.01, marginTop: '10px' }} >
+                      Provider: {selectedPlace.processed_provider ? selectedPlace.processed_provider : "N/A"}
+                    </Typography>
                   </Box>
                   <Divider sx={{mb: 1}} />
                   
-                  <h5>Cost: {selectedPlace.processed_cost ? selectedPlace.processed_cost : "N/A"} {selectedPlace.currency ? selectedPlace.currency : "N/A"}</h5>  
+                  
                   {/* <h5>Cost: {selectedPlace.cost ? selectedPlace.cost : "N/A"}</h5> */}
+                  <h5>Clinic Name: {selectedPlace.processed_institution ? selectedPlace.processed_institution : "N/A"}</h5>
+                  <h5>Surgery Type: {selectedPlace.surgery_type ? selectedPlace.surgery_type : "N/A"}</h5>
                   <h5>Date Of Surgery: {selectedPlace.time ? selectedPlace.time : "N/A"}</h5>
                   <h5>Prescription Prior: {selectedPlace.prescription_prior ? selectedPlace.prescription_prior : "N/A"}</h5>
                   <Typography variant="caption" sx={{ flexGrow: 0.01 }} >

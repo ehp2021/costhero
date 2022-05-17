@@ -74,7 +74,9 @@ function Map(props) {
         googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY} 
       > */}
       <Box style={{display: "flex", flexDirection: "row", justifyContent: "center"}}>
-        <Typography variant="h5" style={{marginBottom: '10px', color: '#222286'}}>Search and compare 427 real LASIK cost quotes from real patients from around the globe</Typography>
+        <Typography variant="h5" style={{marginBottom: '10px', color: '#222286'}}>
+            Search and compare {props.allPrices.length} real LASIK cost quotes from real patients from around the globe
+        </Typography>
       </Box>  
         <Typography variant="body1">How Much Does Lasik Eye Surgery Cost Near Me? </Typography>
 
